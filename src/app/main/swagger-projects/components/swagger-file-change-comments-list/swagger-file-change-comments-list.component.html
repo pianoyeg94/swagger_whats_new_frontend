@@ -1,0 +1,86 @@
+<div
+  class="comment"
+  *ngFor="let comment of swaggerFileChange.comments.slice().reverse()"
+  [ngClass]="{'comment__edit-active': commentsInEditModeMapping[comment.id]}"
+>
+  <div class="comment__main">
+    <img
+      [src]="comment.commentAuthor.profilePhotoUrl
+              ? comment.commentAuthor.profilePhotoUrl
+              : 'assets/img/no-user-photo.jpg'"
+      alt="User Photo"
+      class="comment__photo"
+    >
+    <div class="comment__content">
+      <div
+        class="comment__header"
+        [ngClass]="{'comment__header--margin-bottom': commentsInEditModeMapping[comment.id]}"
+      >
+        <a
+          [routerLink]="['/company/users/', comment.commentAuthor.id]"
+          class="comment__author"
+        >
+          {{ comment.commentAuthor.firstName}} {{ comment.commentAuthor.lastName}}
+        </a>
+        <p class="comment__created-at">{{ comment.createdAt }}</p>
+      </div>
+      <div
+        class="comment__text"
+        *ngIf="!commentsInEditModeMapping[comment.id]"
+      >
+        {{ comment.commentText }}
+      </div>
+
+      <div
+        class="comment__update"
+        *ngIf="comment.commentAuthor.id === (user$ | async).userId
+                && !commentsInEditModeMapping[comment.id]"
+      >
+        <button
+          class="button-link"
+          (click)="onCommentEditStart(comment.id, comment.commentText)"
+        >
+          edit
+        </button>
+        <button
+          class="button-link"
+          (click)="onCommentDelete(comment.id)"
+        >
+          delete
+        </button>
+      </div>
+
+      <form
+        [formGroup]="commentEditFormsMapping[comment.id]"
+        *ngIf="commentsInEditModeMapping[comment.id]"
+        (ngSubmit)="onCommentEditComplete(comment.id)"
+      >
+        <app-text-area-group
+          borderRadiusTextarea="2px"
+          minHeightTextarea="10rem"
+          fontSizeTextarea="1.5rem"
+          [control]="commentEditFormsMapping[comment.id].get('commentText')"
+        ></app-text-area-group>
+
+        <div class="edit-comment-buttons-container">
+          <app-standard-button
+            btnType="submit"
+            [disabledIf]="!commentEditFormsMapping[comment.id].valid"
+          >
+            Save
+          </app-standard-button>
+
+          <app-standard-button
+            class="button-cancel"
+            buttonClass="secondary"
+            btnType="button"
+            (onClick)="onCommentEditCancel(comment.id)"
+          >
+            Cancel
+          </app-standard-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

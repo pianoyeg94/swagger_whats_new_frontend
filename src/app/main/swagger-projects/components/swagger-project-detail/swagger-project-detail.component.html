@@ -1,0 +1,127 @@
+<ng-template
+  let-swaggerProject="swaggerProject"
+  [ngTemplateOutletContext]="{ swaggerProject: (swaggerProject$ | async) }"
+  [ngTemplateOutlet]="self"
+  #self
+>
+  <div class="detail-container">
+    <div class="detail-container--main">
+      <h3 class="swagger-project-property__name">Create By:</h3>
+      <div class="swagger-project-property__value">
+        <img
+          [src]="(swaggerProjectOwner$ | async).profile.profilePhotoUrl
+            ? (swaggerProjectOwner$ | async).profile.profilePhotoUrl
+            : 'assets/img/no-user-photo.jpg'"
+          alt="User Photo"
+          class="swagger-project-property__value--image"
+        >
+        <a
+          [routerLink]="['/company/users', (swaggerProjectOwner$ | async).id]"
+        >
+          {{ (swaggerProjectOwner$ | async).firstName }} {{ (swaggerProjectOwner$ | async).lastName }}
+        </a>
+      </div>
+
+      <h3 class="swagger-project-property__name">Created At:</h3>
+      <div class="swagger-project-property__value">
+        <svg class="swagger-project-property__value--icon">
+          <use href="assets/icons/sprite.svg#icon-calendar1"></use>
+        </svg>
+        {{ swaggerProject.createdAt }}
+      </div>
+
+      <h3 class="swagger-project-property__name">Swagger File:</h3>
+      <div class="swagger-project-property__value">
+        <svg class="swagger-project-property__value--icon">
+          <use href="assets/icons/sprite.svg#icon-file-empty"></use>
+        </svg>
+        <a
+          [href]="swaggerProject.swaggerFileUrl"
+          target="_blank"
+        >
+          {{ swaggerProject.swaggerFileUrl }}
+        </a>
+      </div>
+    </div>
+
+    <div class="detail-container--vcs" *ngIf="swaggerProject.useVcs">
+      <h3 class="swagger-project-property__name">Remote VCS Account:</h3>
+      <div
+        class="swagger-project-property__value"
+        *ngIf="swaggerProject.remoteVcsAccount.vcsService === 'BB'"
+      >
+        <svg class="swagger-project-property__value--icon">
+          <use href="assets/icons/sprite.svg#icon-bitbucket"></use>
+        </svg>
+        {{ swaggerProject.remoteVcsAccount.accountName }}
+      </div>
+      <div
+        class="swagger-project-property__value"
+        *ngIf="swaggerProject.remoteVcsAccount.vcsService === 'GH'"
+      >
+        <svg class="swagger-project-property__value--icon">
+          <use href="assets/icons/sprite.svg#icon-github"></use>
+        </svg>
+        {{ swaggerProject.remoteVcsAccount.accountName }}
+      </div>
+
+      <h3 class="swagger-project-property__name">Remote Repository Name:</h3>
+      <div class="swagger-project-property__value">
+        <svg class="swagger-project-property__value--icon">
+          <use href="assets/icons/sprite.svg#icon-folder-open-o"></use>
+        </svg>
+        {{ swaggerProject.remoteRepoName }}
+      </div>
+
+      <h3 class="swagger-project-property__name">Remote Repository Branch:</h3>
+      <div class="swagger-project-property__value">
+        <svg class="swagger-project-property__value--icon">
+          <use href="assets/icons/sprite.svg#icon-flow-branch"></use>
+        </svg>
+        {{ swaggerProject.remoteRepoBranch }}
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div
+  *ngIf="(user$ | async).userId === (swaggerProjectOwner$ | async).id ||
+          (user$ | async).isCompanyOwner"
+  class="swagger-project__edit-buttons"
+>
+  <app-standard-button
+    buttonClass="secondary"
+    (onClick)="onOpenPopup()"
+    class="swagger-project__delete-button"
+  >
+    Delete
+  </app-standard-button>
+</div>
+
+<app-popup
+  [openClosedFlag]="popupVisible"
+  (popupClosed)="onPopupClose()"
+>
+  <div class="popup__content">
+    <p class="popup__hint">
+      Are you sure you want to
+      delete this Swagger Project?
+    </p>
+
+    <div class="popup__buttons">
+      <app-standard-button
+        buttonClass="secondary"
+        (onClick)="onProjectDelete()"
+      >
+        Delete
+      </app-standard-button>
+      <app-standard-button
+        buttonClass="primary"
+        (onClick)="onPopupClose()"
+        class="popup__button-cancel"
+      >
+        Cancel
+      </app-standard-button>
+    </div>
+  </div>
+</app-popup>

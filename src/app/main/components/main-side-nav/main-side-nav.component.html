@@ -1,0 +1,74 @@
+<div class="sidebar">
+  <ul class="side-nav">
+    <li
+      class="side-nav__item"
+      routerLinkActive="side-nav__item--active"
+    >
+      <a
+        class="side-nav__link"
+        [routerLink]="swaggerProjectsPageLink"
+      >
+        <svg class="side-nav__icon">
+          <use xlink:href="assets/icons/sprite.svg#icon-swagger"></use>
+        </svg>
+        <span>Swagger Projects</span>
+      </a>
+    </li>
+    <li
+      class="side-nav__item"
+      routerLinkActive="side-nav__item--active"
+    >
+      <a
+        class="side-nav__link"
+        [routerLink]="vcsAccountsPageLink"
+      >
+        <svg class="side-nav__icon">
+          <use xlink:href="assets/icons/sprite.svg#icon-flow-cascade"></use>
+        </svg>
+        <span>VCS Accounts</span>
+      </a>
+    </li>
+    <li
+      class="side-nav__item"
+      routerLinkActive="side-nav__item--active"
+    >
+      <a
+        class="side-nav__link"
+        [routerLink]="companyPageLink"
+      >
+        <svg class="side-nav__icon">
+          <use xlink:href="assets/icons/sprite.svg#icon-users1"></use>
+        </svg>
+        <span>My Company</span>
+      </a>
+    </li>
+    <li
+      class="side-nav__item"
+      routerLinkActive="side-nav__item--active"
+    >
+      <a
+        class="side-nav__link"
+        [routerLink]="userProfilePageLink"
+      >
+        <svg class="side-nav__icon">
+          <use xlink:href="assets/icons/sprite.svg#icon-user"></use>
+        </svg>
+        <span>My Profile</span>
+      </a>
+    </li>
+    <li
+      class="side-nav__item"
+      routerLinkActive="side-nav__item--active"
+    >
+      <a
+        class="side-nav__link"
+        [routerLink]="getHelpPageLink"
+      >
+        <svg class="side-nav__icon">
+          <use href="assets/icons/sprite.svg#icon-lifebuoy"></use>
+        </svg>
+        <span>Get Help</span>
+      </a>
+    </li>
+  </ul>
+</div>

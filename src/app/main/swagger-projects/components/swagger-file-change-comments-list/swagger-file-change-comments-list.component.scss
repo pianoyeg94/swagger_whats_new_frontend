@@ -1,0 +1,96 @@
+@import "src/variables.scss";
+
+.comment {
+  background-color: $color-grey-light-2;
+  text-align: left;
+  padding: 1.5rem 2rem;
+  cursor: pointer;
+  transition: background-color 0.2s linear;
+
+  &__main {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__photo {
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &:hover,
+  &__edit-active {
+    background-color: $color-grey-light-3;
+  }
+
+  &__content {
+    width: 100%;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+
+    &--margin-bottom {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__author {
+    color: $color-primary;
+    font-weight: 700;
+
+    &:hover {
+      color: $color-primary-dark;
+    }
+
+    &__update {
+      display: flex;
+    }
+  }
+
+  &__created-at {
+    margin-left: 1rem;
+    font-size: 1.6rem;
+  }
+}
+
+app-text-area-group {
+  width: 100%;
+}
+
+.button-cancel {
+  margin-left: 1rem;
+}
+
+.button-link {
+  border: none;
+  color: $color-primary;
+  background-color: transparent;
+  margin-right: 0.7rem;
+  font-size: 1.7rem;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-primary-dark;
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.edit-comment-buttons-container {
+  display: flex;
+}

@@ -1,0 +1,45 @@
+@import "src/variables";
+
+.rounded-corners-button {
+  width: 100%;
+  font-weight: 400;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  padding: 1.8rem 3rem;
+  border: none;
+  border-radius: 10rem;
+  color: white;
+  display: block;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &--primary {
+    background-color: $color-primary;
+  }
+
+  &--danger {
+    background-color: $color-grey-dark-2;
+  }
+
+  &:hover {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+  }
+
+  &:active {
+    outline: none;
+    transform: translateY(-0.05rem);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: rgba($color-primary, 0.7);
+    transform: none;
+    box-shadow: none;
+  }
+}

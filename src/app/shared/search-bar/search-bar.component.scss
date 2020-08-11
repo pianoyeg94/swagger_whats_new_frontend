@@ -1,0 +1,57 @@
+@import "src/variables.scss";
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__input {
+    font-family: inherit;
+    font-size: 2rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    background-color: $color-grey-light-1;
+    border: none;
+    color: $color-grey-dark;
+    padding: 1.5rem 2rem;
+    border-radius: 100px;
+    width: 90%;
+    margin-right: -3.5rem;
+    transition: all .2s;
+
+    &::placeholder {
+      color: $color-grey-dark-2;
+      opacity: 1;
+      text-transform: uppercase;
+    }
+
+    &:focus {
+      outline: none;
+      width: 100%;
+      background-color: $color-grey-light-2;
+    }
+  }
+
+  &__input:focus + .search__button {
+    background-color: $color-grey-light-2;
+  }
+
+  &__button {
+    border: none;
+    background-color: $color-grey-light-1;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+
+  &__icon {
+    height: 2.75rem;
+    width: 2.75rem;
+    fill: $color-grey-dark-2;
+  }
+}

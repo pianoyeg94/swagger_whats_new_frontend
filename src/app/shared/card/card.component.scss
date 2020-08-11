@@ -1,0 +1,51 @@
+@import "src/variables.scss";
+
+:host {
+  border-radius: 1rem;
+  border: 1px solid $color-grey-light-3;
+  background-image: $color-primary-gradient;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .1s;
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0.1rem 1rem 2rem rgba($color-black, 0.2);
+  }
+
+  &:active {
+    transform: translateY(-0.15rem);
+    box-shadow: 0.05rem 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  .card__inner {
+    height: 85%;
+    width: 85%;
+    border-radius: inherit;
+    background-color: $color-white;
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .inner__title {
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
+    color: $color-primary;
+  }
+
+  .inner__content {
+    border-top: 1px solid $color-primary-light;
+    background-color: $color-grey-light-1;
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,0 +1,80 @@
+@import "src/variables";
+
+.form {
+
+  &__label-and-error-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__label {
+    font-weight: 700;
+    color: $color-grey-dark;
+    margin-bottom: 0.75rem;
+
+    &--small {
+      font-size: 1.4rem;
+    }
+
+    &--normal {
+      font-size: 1.5rem;
+    }
+
+    &--large {
+      font-size: 1.6rem;
+    }
+  }
+
+  &__error {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: $color-secondary-dark;
+    margin-bottom: 0.75rem;
+  }
+
+  &__input {
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: $color-grey-dark;
+    padding: 1.5rem 2rem;
+    border: none;
+    border-radius: 2px;
+    border-bottom: 3px solid transparent;
+    background-color: $color-grey-light-2;
+    width: 100%;
+
+    &--focus {
+      border-bottom: 3px solid $color-primary;
+    }
+
+    &--invalid {
+      border-bottom: 3px solid $color-secondary-dark;
+    }
+
+    &::placeholder {
+      color: $color-grey-dark-2;
+      opacity: 1;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      border: none;
+      border-bottom: 3px solid transparent;
+      -webkit-text-fill-color: $color-grey-dark;
+      -webkit-box-shadow: 0 0 0 1000px $color-grey-light-2 inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    &:-webkit-autofill:focus {
+      border-bottom: 3px solid $color-primary;
+    }
+  }
+}
+
+

@@ -1,0 +1,11 @@
+<button
+  class="rounded-corners-button"
+  [type]="btnType"
+  [disabled]="disabledIf"
+  [ngClass]="{
+  'rounded-corners-button--primary': btnClass === 'primary',
+   'rounded-corners-button--danger': btnClass === 'danger'
+   }"
+>
+  <ng-content></ng-content>
+</button>

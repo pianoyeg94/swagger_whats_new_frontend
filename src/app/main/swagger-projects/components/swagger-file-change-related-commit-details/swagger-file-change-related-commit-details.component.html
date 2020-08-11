@@ -1,0 +1,26 @@
+<div class="commits-container">
+  <h3 class="commits__title">
+    Commits that presumably triggered these API changes
+  </h3>
+
+  <app-accordion
+    *ngFor="let commit of (swaggerFileChange$ | async).relatedCommitDetails; let i = index;"
+  >
+    <div section="header" class="commits__header">
+      <p>{{ i + 1 }}) Pushed At: {{ commit.timestamp }}</p>
+      <p>Pushed By: {{ commit.pushedBy }}</p>
+    </div>
+
+    <div section="content" class="accordion-content__container">
+      <h4 class="accordion-content__title">Commit Urls</h4>
+      <a
+        *ngFor="let url of commit.commitUrls"
+        [href]="url"
+        target="_blank"
+        class="commits__url"
+      >
+        {{ url }}
+      </a>
+    </div>
+  </app-accordion>
+</div>

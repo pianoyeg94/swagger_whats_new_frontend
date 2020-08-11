@@ -1,0 +1,62 @@
+@import "src/variables.scss";
+
+:host {
+  background-color: $color-grey-dark-3;
+  padding: 0 3rem 0 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 300;
+}
+
+.navbar {
+
+  &__search {
+    flex: 0 0 45%;
+  }
+
+  &__logo {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    color: $color-white;
+  }
+
+  &__user {
+    display: flex;
+    align-items: center;
+  }
+
+  &__user-photo {
+    height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 50%;
+    margin: 0 1rem 0 2.5rem;
+  }
+
+  &__el {
+    font-weight: 300;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: $color-white;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &--user {
+      display: flex;
+      align-items: center;
+    }
+
+    &:hover,
+    &:active {
+      transform: translateY(-2px);
+      text-shadow: 0 0.7rem 1rem $color-black;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

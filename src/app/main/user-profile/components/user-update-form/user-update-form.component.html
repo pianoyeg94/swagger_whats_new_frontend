@@ -1,0 +1,64 @@
+<form
+  [formGroup]="userUpdateForm"
+  class="main-info__form"
+  (ngSubmit)="onSubmit()"
+>
+  <h3 class="main-info__title">My Account Settings</h3>
+  <app-input-field-group
+    inputId="email"
+    [control]="userUpdateForm.get('email')"
+  >
+    Email
+  </app-input-field-group>
+
+  <app-input-field-group
+    inputId="first-name"
+    [control]="userUpdateForm.get('firstName')"
+  >
+    First Name
+  </app-input-field-group>
+
+  <app-input-field-group
+    inputId="last-name"
+    [control]="userUpdateForm.get('lastName')"
+  >
+    Last Name
+  </app-input-field-group>
+
+  <app-input-field-group
+    inputId="job-title"
+    [control]="userUpdateForm.get('jobTitle')"
+  >
+    Job Title
+  </app-input-field-group>
+
+  <div class="photo-upload__container">
+    <input
+      style="display: none"
+      accept="image/png, image/jpeg, image/bmp"
+      type="file"
+      #fileInput
+      (change)="onPhotoUpload($event)"
+    >
+    <img
+      [src]="userProfilePhotoUrl$ | async" alt="User Photo"
+      class="photo-upload__photo"
+    >
+
+    <button
+      class="photo-upload__button"
+      type="button"
+      (click)="fileInput.click()"
+    >
+      Choose a new photo
+    </button>
+  </div>
+
+  <app-rounded-corners-button
+    class="main-info__button"
+    [disabledIf]="!userUpdateForm.valid"
+    btnType="submit"
+  >
+    Save Settings
+  </app-rounded-corners-button>
+</form>

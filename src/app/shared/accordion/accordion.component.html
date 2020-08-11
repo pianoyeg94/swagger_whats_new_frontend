@@ -1,0 +1,17 @@
+<div
+  class="accordion"
+  [ngClass]="{'is-open': contentIsOpen}"
+  (click)="onClick()"
+>
+  <ng-content select="[section=header]"></ng-content>
+  <div class="arrow-wrapper">
+    <div class="arrow"></div>
+  </div>
+</div>
+<div
+  class="accordion-content"
+  [ngStyle]="{'max-height.px': contentHeightInPx}"
+  #accordionContent
+>
+  <ng-content select="[section=content]"></ng-content>
+</div>

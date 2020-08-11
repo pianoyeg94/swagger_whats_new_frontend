@@ -1,0 +1,31 @@
+@import "src/variables.scss";
+
+.navbar {
+  height: 10vh;
+  position: sticky;
+  top: 0;
+}
+
+.content {
+  height: 90%;
+  padding-top: 3rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 3rem;
+}
+
+.navigation {
+  grid-column: 1 / span 1;
+  margin-left: 8rem;
+}
+
+.main {
+  grid-column: 2 / span 1;
+  margin-right: 5rem;
+}
+
+.footer {
+  height: 10rem;
+  grid-column: 1 / -1;
+  margin-bottom: -10vh;
+}

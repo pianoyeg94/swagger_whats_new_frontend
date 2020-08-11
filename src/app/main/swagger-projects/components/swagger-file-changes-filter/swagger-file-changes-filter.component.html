@@ -1,0 +1,55 @@
+<ng-select
+  class="custom"
+  dropdownPosition="bottom"
+  appendTo="ng-select"
+  labelForId="swagger-file-change-type"
+  [clearable]="false"
+  [clearOnBackspace]="false"
+  [searchable]="false"
+  [hideSelected]="false"
+  [items]="swaggerFileChangeTypesList"
+  [(ngModel)]="selectedSwaggerFileChangeType"
+  (change)="onSelect()"
+>
+</ng-select>
+
+<app-check-box-radio-button-group
+  inputId="endpoints"
+  inputName="radio"
+  inputType="radio"
+  [withFormControl]="false"
+  [checkedByDefault]="true"
+  (checkedEvent)="onChecked($event)"
+>
+  Endpoints
+</app-check-box-radio-button-group>
+
+<app-check-box-radio-button-group
+  inputId="methods"
+  inputName="radio"
+  inputType="radio"
+  [withFormControl]="false"
+  (checkedEvent)="onChecked($event)"
+>
+  Methods
+</app-check-box-radio-button-group>
+
+<app-check-box-radio-button-group
+  inputId="contracts"
+  inputName="radio"
+  inputType="radio"
+  [withFormControl]="false"
+  (checkedEvent)="onChecked($event)"
+>
+  Contracts
+</app-check-box-radio-button-group>
+
+<app-check-box-radio-button-group
+  inputId="contractProperties"
+  inputName="radio"
+  inputType="radio"
+  [withFormControl]="false"
+  (checkedEvent)="onChecked($event)"
+>
+  Contract Properties
+</app-check-box-radio-button-group>

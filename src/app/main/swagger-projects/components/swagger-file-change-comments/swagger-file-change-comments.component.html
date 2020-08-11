@@ -1,0 +1,17 @@
+<div class="comments-section-container">
+  <app-swagger-file-change-comment-create-form
+    [swaggerFileChange$]="swaggerFileChange$"
+  >
+  </app-swagger-file-change-comment-create-form>
+
+  <div
+    class="comments-container"
+    *ngIf="(swaggerFileChange$ | async).comments.length > 0"
+  >
+    <app-swagger-file-change-comments-list
+      [swaggerFileChange$]="swaggerFileChange$"
+      [user$]="user$"
+    >
+    </app-swagger-file-change-comments-list>
+  </div>
+</div>

@@ -1,0 +1,92 @@
+<div class="form-wrapper">
+  <app-user-update-form></app-user-update-form>
+</div>
+
+<div class="form-wrapper">
+  <app-user-profile-form></app-user-profile-form>
+</div>
+
+<div class="form-wrapper">
+  <app-user-update-password-form></app-user-update-password-form>
+</div>
+
+<div class="form-wrapper" *ngIf="isCompanyOwner$ | async">
+  <app-user-company-details-form></app-user-company-details-form>
+</div>
+
+<div class="form-wrapper" *ngIf="isCompanyOwner$ | async">
+  <app-standard-button
+    buttonClass="secondary"
+    (onClick)="onPopupOpen()"
+    class="delete-btn"
+  >
+    Delete Company
+  </app-standard-button>
+
+  <app-popup
+    [openClosedFlag]="popupVisible"
+    (popupClosed)="onPopupClose()"
+  >
+    <div class="popup__content">
+      <p class="popup__hint">
+        Are you sure you want to
+        delete this Company?
+        All data will be lost.
+      </p>
+
+      <div class="popup__buttons">
+        <app-standard-button
+          buttonClass="secondary"
+          (onClick)="onCompanyDelete()"
+        >
+          Delete
+        </app-standard-button>
+        <app-standard-button
+          buttonClass="primary"
+          (onClick)="onPopupClose()"
+          class="popup__button-cancel"
+        >
+          Cancel
+        </app-standard-button>
+      </div>
+    </div>
+  </app-popup>
+</div>
+
+<div class="form-wrapper" *ngIf="!(isCompanyOwner$ | async)">
+  <app-standard-button
+    buttonClass="secondary"
+    (onClick)="onPopupOpen()"
+    class="delete-btn"
+  >
+    Cancel Membership
+  </app-standard-button>
+
+  <app-popup
+    [openClosedFlag]="popupVisible"
+    (popupClosed)="onPopupClose()"
+  >
+    <div class="popup__content">
+      <p class="popup__hint">
+        Are you sure you want to
+        cancel your Membership?
+      </p>
+
+      <div class="popup__buttons">
+        <app-standard-button
+          buttonClass="secondary"
+          (onClick)="onCompanyMembershipCancel()"
+        >
+          Yes
+        </app-standard-button>
+        <app-standard-button
+          buttonClass="primary"
+          (onClick)="onPopupClose()"
+          class="popup__button-cancel"
+        >
+          No
+        </app-standard-button>
+      </div>
+    </div>
+  </app-popup>
+</div>

@@ -1,0 +1,56 @@
+@import "src/variables";
+
+.accordion {
+  position: relative;
+  width: 100%;
+  background-color: $color-grey-light-2;
+  text-align: left;
+  padding: 1.5rem 2rem;
+  cursor: pointer;
+  transition: background-color 0.2s linear;
+
+  &:hover {
+    background-color: $color-grey-light-3;
+  }
+
+  &.is-open {
+    background-color: $color-grey-light-3;
+  }
+}
+
+.accordion-content {
+  padding: 0 2rem;
+  border-left: 1px solid $color-grey-light-2;
+  border-right: 1px solid $color-grey-light-2;
+  transition: max-height 0.2s ease-in-out;
+  overflow: hidden;
+  max-height: 0;
+}
+
+.arrow-wrapper {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 20%;
+  right: 2.5rem;
+  width: 2.1rem;
+  height: 3.1rem;
+  transition: transform 0.3s;
+}
+
+.arrow {
+  text-align: center;
+  border-style: solid;
+  border-width: 0.3rem 0.3rem 0 0;
+  height: 1.5rem;
+  width: 1.5rem;
+  transform: rotate(135deg);
+  color: $color-grey-dark;
+  display: inline-block;
+  z-index: 100;
+}
+
+.accordion.is-open > .arrow-wrapper {
+  transform: rotate(180deg);
+}

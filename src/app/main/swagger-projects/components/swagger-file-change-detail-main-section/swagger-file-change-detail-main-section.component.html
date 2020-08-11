@@ -1,0 +1,18 @@
+<app-swagger-file-changes-filter
+  (swaggerFileChangeTypeSelected)="onSwaggerFileChangeTypeSelected($event)"
+  (whereSwaggerFileChangeHappenedSelected)="onWhereSwaggerFileChangeHappenedSelected($event)"
+>
+</app-swagger-file-changes-filter>
+
+<app-swagger-file-changes-container
+  [swaggerFileChange$]="swaggerFileChange$"
+  [swaggerFileChangeType]="swaggerFileChangeType"
+  [whereSwaggerFileChangeHappened]="whereSwaggerFileChangeHappened"
+>
+</app-swagger-file-changes-container>
+
+<app-swagger-file-change-related-commit-details
+  *ngIf="(swaggerProject$ | async).useVcs"
+  [swaggerFileChange$]="swaggerFileChange$"
+>
+</app-swagger-file-change-related-commit-details>

@@ -1,0 +1,64 @@
+@import "src/variables";
+
+:host {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: $color-primary;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loading {
+
+  &__ring {
+    display: inline-block;
+    position: relative;
+    width: 12rem;
+    height: 12rem;
+
+    div {
+      box-sizing: border-box;
+      display: block;
+      position: absolute;
+      width: 10rem;
+      height: 10rem;
+      margin: 0.8rem;
+      border: 1rem solid $color-primary-darkest;
+      border-radius: 50%;
+      animation: loading__ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border-color: $color-primary-darkest transparent transparent transparent;
+
+      &:nth-child(1) {
+        animation-delay: -0.45s;
+      }
+
+      &:nth-child(2) {
+        animation-delay: -0.3s;
+      }
+
+      &:nth-child(3) {
+        animation-delay: -0.15s;
+      }
+    }
+  }
+
+  &__message {
+    color: $color-primary-darkest;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 1rem;
+  }
+}
+
+@keyframes loading__ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,67 @@
+<div class="cards-container">
+  <app-feature-card
+    svgId="icon-user-plus"
+    *ngIf="(hasInviteMemberPermission$ | async) && (user$ | async).emailConfirmed"
+    (click)="onInviteNewCompanyMember()"
+  >
+    <span>Invite</span>
+    <span>User</span>
+  </app-feature-card>
+
+  <app-card
+    *ngFor="let member of companyMembers$ | async"
+    (click)="onCompanyMemberSelect(member.id)"
+  >
+    <div
+      class="title"
+      *ngIf="member.id !== (user$ | async).userId"
+    >
+      <p>{{ member.firstName }}</p>
+      <p>{{ member.lastName }}</p>
+    </div>
+    <div
+      class="title"
+      *ngIf="member.id === (user$ | async).userId"
+    >
+      <p>{{ (user$ | async).firstName }}</p>
+      <p>{{ (user$ | async).lastName }}</p>
+    </div>
+    <div class="content">
+      <img
+        *ngIf="member.id !== (user$ | async).userId"
+        [src]="member.profile.profilePhotoUrl
+          ? member.profile.profilePhotoUrl
+          : 'assets/img/no-user-photo.jpg'"
+        alt="User Photo"
+        class="content__member-photo"
+      >
+      <img
+        *ngIf="member.id === (user$ | async).userId"
+        [src]="(userProfile$ | async).profilePhotoUrl
+          ? (userProfile$ | async).profilePhotoUrl
+          : 'assets/img/no-user-photo.jpg'"
+        alt="User Photo"
+        class="content__member-photo"
+      >
+    </div>
+  </app-card>
+</div>
+
+<div
+  class="pagination-container"
+  *ngIf="(overallEntitiesCount$ | async) > 5"
+>
+  <app-pagination
+    [numberOfPages$]="numberOfPages$"
+    [selectedPageNumber$]="selectedPageNumber$"
+    (pageSelected)="onPageChange($event)"
+  >
+  </app-pagination>
+
+  <app-pagination-page-size
+    [pageSizesArray]="[5, 10, 25, 50]"
+    [selectedPageSize$]="selectedPageSize$"
+    (pageSizeSelected)="onPageSizeChange($event)"
+  >
+  </app-pagination-page-size>
+</div>

@@ -1,0 +1,29 @@
+<app-navbar
+  class="navbar"
+  userProfilePageLink="/my-profile"
+  [userName$]="userName$"
+  [userProfilePhotoUrl$]="userProfilePhotoUrl$"
+  (logout)="onLogout()"
+>
+</app-navbar>
+
+<div class="content">
+  <div class="navigation">
+    <app-main-side-nav
+      swaggerProjectsPageLink="/swagger-projects"
+      vcsAccountsPageLink="/vcs-accounts"
+      companyPageLink="/company"
+      userProfilePageLink="/my-profile"
+      getHelpPageLink="/get-help"
+    >
+    </app-main-side-nav>
+
+    <app-secondary-side-nav></app-secondary-side-nav>
+  </div>
+
+  <app-main-content [pageTitle$]="pageTitle$" class="main">
+    <router-outlet></router-outlet>
+  </app-main-content>
+
+  <app-footer class="footer"></app-footer>
+</div>

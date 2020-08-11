@@ -1,0 +1,6 @@
+# dependencies
+/node_modules
+
+# example environment files
+/src/environments/environmentExample.ts
+/src/environments/environmentExample.prod.ts

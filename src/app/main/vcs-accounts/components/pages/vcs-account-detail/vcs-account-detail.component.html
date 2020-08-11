@@ -1,0 +1,96 @@
+<ng-template
+  let-vcsAccount="vcsAccount"
+  [ngTemplateOutletContext]="{ vcsAccount: (vcsAccount$ | async) }"
+  [ngTemplateOutlet]="self"
+  #self
+>
+  <div class="detail-container">
+    <h3 class="vcs-property__name">Remote VCS Service:</h3>
+    <div
+      class="vcs-property__value"
+      *ngIf="vcsAccount.service === 'BB'"
+    >
+      <svg class="vcs-property__value--icon">
+        <use href="assets/icons/sprite.svg#icon-bitbucket"></use>
+      </svg>
+      Bitbucket
+    </div>
+    <div
+      class="vcs-property__value"
+      *ngIf="vcsAccount.service === 'GH'"
+    >
+      <svg class="vcs-property__value--icon">
+        <use href="assets/icons/sprite.svg#icon-github"></use>
+      </svg>
+      GitHub
+    </div>
+
+    <h3 class="vcs-property__name">Remote VCS Account Type:</h3>
+    <div
+      class="vcs-property__value"
+      *ngIf="vcsAccount.accountType === 'U'"
+    >
+      <svg class="vcs-property__value--icon">
+        <use href="assets/icons/sprite.svg#icon-user"></use>
+      </svg>
+      User
+    </div>
+    <div
+      class="vcs-property__value"
+      *ngIf="vcsAccount.accountType === 'O'"
+    >
+      <svg class="vcs-property__value--icon">
+        <use href="assets/icons/sprite.svg#icon-users1"></use>
+      </svg>
+      Organization
+    </div>
+
+    <h3 class="vcs-property__name">Registered At:</h3>
+    <div class="vcs-property__value">
+      <svg class="vcs-property__value--icon">
+        <use href="assets/icons/sprite.svg#icon-calendar1"></use>
+      </svg>
+      {{ vcsAccount.registeredAt }}
+    </div>
+  </div>
+
+  <app-standard-button
+    buttonClass="secondary"
+    (onClick)="onOpenPopup()"
+    class="delete-btn"
+    *ngIf="(user$ | async).isCompanyOwner"
+  >
+    Delete
+  </app-standard-button>
+</ng-template>
+
+
+<app-popup
+  [openClosedFlag]="popupVisible"
+  (popupClosed)="onPopupClose()"
+>
+  <div class="popup__content">
+    <p class="popup__hint">
+      Are you sure you want to
+      delete this VCS Account?
+      All associated Swagger Projects
+      will be deleted also.
+    </p>
+
+    <div class="popup__buttons">
+      <app-standard-button
+        buttonClass="secondary"
+        (onClick)="onAccountDelete()"
+      >
+        Delete
+      </app-standard-button>
+      <app-standard-button
+        buttonClass="primary"
+        (onClick)="onPopupClose()"
+        class="popup__button-cancel"
+      >
+        Cancel
+      </app-standard-button>
+    </div>
+  </div>
+</app-popup>

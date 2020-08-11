@@ -1,0 +1,9 @@
+<a (click)="onPageBack()">❮</a>
+<a
+  (click)="onPageSelect(page)"
+  *ngFor="let page of pagesArray$ | async"
+  [ngClass]="{'active': page === selectedPageNumber}"
+>
+  {{ page }}
+</a>
+<a (click)="onPageForward()">❯</a>

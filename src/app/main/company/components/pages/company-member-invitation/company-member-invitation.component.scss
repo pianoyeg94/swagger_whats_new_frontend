@@ -1,0 +1,26 @@
+@import "src/variables.scss";
+
+:host {
+  display: block;
+  padding: 2rem 4rem 2.5rem 4rem;
+}
+
+.invitation-form {
+  display: grid;
+  grid-row-gap: 2rem;
+}
+
+.ng-select-group {
+  display: grid;
+  grid-row-gap: 0.75rem;
+
+  &__label {
+    font-weight: 700;
+    color: $color-grey-dark;
+    font-size: 1.5rem;
+  }
+}
+
+app-rounded-corners-button {
+  margin-top: 0.5rem;
+}

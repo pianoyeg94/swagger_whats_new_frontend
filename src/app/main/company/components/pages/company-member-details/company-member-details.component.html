@@ -1,0 +1,130 @@
+<div class="avatar">
+  <img
+    [src]="(companyMember$ | async).profile.profilePhotoUrl
+        ? (companyMember$ | async).profile.profilePhotoUrl
+        : 'assets/img/no-user-photo.jpg'"
+    alt="User Photo"
+    class="avatar__photo"
+  >
+</div>
+
+<div class="info">
+  <div class="info__attribute">
+    <h4 class="info__label">
+      Email:
+    </h4>
+    <p class="info__detail">{{(companyMember$ | async).email}}</p>
+  </div>
+
+  <div class="info__attribute">
+    <h4 class="info__label">
+      Job Title:
+    </h4>
+    <p class="info__detail">{{(companyMember$ | async).jobTitle}}</p>
+  </div>
+
+  <div class="info__attribute">
+    <h4 class="info__label">
+      Phone Number:
+    </h4>
+    <p
+      class="info__detail"
+    >
+      {{
+      (companyMember$ | async).profile.phoneNumber
+        ? (companyMember$ | async).profile.phoneNumber
+        : 'Not Provided'
+      }}
+    </p>
+  </div>
+
+  <div class="info__attribute">
+    <h4 class="info__label">
+      Skype:
+    </h4>
+    <p
+      class="info__detail"
+    >
+      {{
+      (companyMember$ | async).profile.skype
+        ? (companyMember$ | async).profile.skype
+        : 'Not Provided'
+      }}
+    </p>
+  </div>
+</div>
+
+<form
+  class="additional-info__form"
+  [formGroup]="companyMemberUpdateForm"
+  *ngIf="(user$ | async).isCompanyOwner"
+  (ngSubmit)="onMemberUpdate()"
+>
+  <div class="additional-info__buttons">
+    <app-standard-button
+      buttonClass="primary"
+      class="additional-info__button"
+      btnType="submit"
+    >
+      Save Changes
+    </app-standard-button>
+    <app-standard-button
+      buttonClass="secondary"
+      (onClick)="onPopupOpen()"
+      class="additional-info__button"
+    >
+      Delete Member
+    </app-standard-button>
+  </div>
+
+  <div class="ng-select-group">
+    <label
+      for="membership-permissions"
+      class="ng-select-group__label"
+    >
+      Permissions:
+    </label>
+    <ng-select
+      [items]="companyMembershipPermissions"
+      [multiple]="true"
+      formControlName="companyMembershipPermissions"
+      class="custom"
+      dropdownPosition="bottom"
+      [clearable]="false"
+      [clearOnBackspace]="false"
+      [searchable]="false"
+      appendTo="ng-select"
+      [hideSelected]="false"
+      labelForId="membership-permissions"
+    >
+    </ng-select>
+  </div>
+</form>
+
+<app-popup
+  [openClosedFlag]="popupVisible"
+  (popupClosed)="onPopupClose()"
+>
+  <div class="popup__content">
+    <p class="popup__hint">
+      Are you sure you want to
+      delete this Company Member?
+    </p>
+
+    <div class="popup__buttons">
+      <app-standard-button
+        buttonClass="secondary"
+        (onClick)="onMemberDelete()"
+      >
+        Delete
+      </app-standard-button>
+      <app-standard-button
+        buttonClass="primary"
+        (onClick)="onPopupClose()"
+        class="popup__button-cancel"
+      >
+        Cancel
+      </app-standard-button>
+    </div>
+  </div>
+</app-popup>

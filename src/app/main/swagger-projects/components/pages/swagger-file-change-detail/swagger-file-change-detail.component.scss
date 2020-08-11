@@ -1,0 +1,9 @@
+@import "src/variables.scss";
+
+:host {
+  color: $color-grey-dark;
+  font-weight: 400;
+  font-size: 1.8rem;
+  display: block;
+  padding: 2rem 3rem;
+}

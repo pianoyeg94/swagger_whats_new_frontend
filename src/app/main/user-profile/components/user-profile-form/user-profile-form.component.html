@@ -1,0 +1,28 @@
+<form
+  [formGroup]="userProfileForm"
+  class="profile-info__form"
+  (ngSubmit)="onSubmit()"
+>
+  <h3 class="profile-info__title">My Profile Info</h3>
+  <app-input-field-group
+    inputId="phone-number"
+    [control]="userProfileForm.get('phoneNumber')"
+  >
+    Phone Number
+  </app-input-field-group>
+
+  <app-input-field-group
+    inputId="skype"
+    [control]="userProfileForm.get('skype')"
+  >
+    Skype
+  </app-input-field-group>
+
+  <app-rounded-corners-button
+    class="profile-info__button"
+    [disabledIf]="!userProfileForm.valid"
+    btnType="submit"
+  >
+    Save Profile
+  </app-rounded-corners-button>
+</form>

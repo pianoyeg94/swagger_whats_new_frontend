@@ -1,0 +1,40 @@
+<label
+  class="textarea-group__label"
+  [for]="labelForId"
+  [ngStyle]="{
+    marginBottom: marginBottomLabel,
+    marginTop: marginTopLabel,
+    color: colorLabel,
+    fontSize: fontSizeLabel,
+    fontWeight: fontWeightLabel,
+    textTransform: getLabelUpper()
+  }"
+>
+  <ng-content></ng-content>
+</label>
+<textarea
+  class="textarea-group__textarea"
+  *ngIf="withFormControl"
+  [formControl]="control"
+  [id]="labelForId"
+  [ngStyle]="{
+    minHeight: minHeightTextarea,
+    fontSize: fontSizeTextarea,
+    borderRadius: borderRadiusTextarea
+  }"
+  (focus)="onFocus()"
+  (focusout)="onFocusOut()"
+>
+</textarea>
+
+<textarea
+  class="textarea-group__textarea"
+  *ngIf="!withFormControl"
+  [id]="labelForId"
+  [ngStyle]="{
+    minHeight: minHeightTextarea,
+    fontSize: fontSizeTextarea,
+    borderRadius: borderRadiusTextarea
+  }"
+>
+</textarea>

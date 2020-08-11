@@ -1,0 +1,54 @@
+@import "src/variables.scss";
+
+:host {
+  padding: 2rem 3rem;
+  display: block;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 17rem));
+  grid-row-gap: 2rem;
+  grid-column-gap: 2.5rem;
+  align-items: center;
+}
+
+app-feature-card {
+  height: 22rem;
+  width: 17rem;
+
+  span {
+
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: .5rem;
+    color: $color-primary;
+  }
+}
+
+app-card {
+  height: 22rem;
+  width: 17rem;
+
+  .content {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__member-photo {
+      height: 45%;
+      width: 45%;
+      border-radius: 50%;
+    }
+  }
+}
+
+.pagination-container {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

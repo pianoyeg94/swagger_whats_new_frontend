@@ -1,0 +1,35 @@
+<form [formGroup]="commentCreateForm" (ngSubmit)="onSubmit()">
+  <app-text-area-group
+    borderRadiusTextarea="2px"
+    minHeightTextarea="10rem"
+    fontSizeTextarea="1.5rem"
+    labelForId="test"
+    marginBottomLabel="1rem"
+    fontSizeLabel="2.5rem"
+    colorLabel="#55c57a"
+    fontWeightLabel="400"
+    [control]="commentCreateForm.get('commentText')"
+    (onAreaFocused)="onTextAreaFocused()"
+  >
+    Comments
+  </app-text-area-group>
+
+  <div class="comment-buttons-container">
+    <app-standard-button
+      btnType="submit"
+      *ngIf="textAreaFocused"
+    >
+      Submit
+    </app-standard-button>
+
+    <app-standard-button
+      class="button-clear"
+      buttonClass="secondary"
+      btnType="button"
+      *ngIf="textAreaFocused"
+      (onClick)="onTextAreaClear()"
+    >
+      Clear
+    </app-standard-button>
+  </div>
+</form>

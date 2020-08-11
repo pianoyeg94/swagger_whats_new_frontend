@@ -1,0 +1,64 @@
+<div class="cards-container">
+  <app-feature-card
+    *ngIf="hasCreateSwaggerProjectsPermissions$ | async"
+    (click)="onCreateSwaggerProject()"
+    svgId="icon-swagger"
+  >
+    <span>New</span>
+    <span>Project</span>
+  </app-feature-card>
+
+  <div
+    class="no-content"
+    *ngIf="!(hasCreateSwaggerProjectsPermissions$ | async)
+            && !(swaggerProjectsExist$ | async)"
+  >
+    No swagger projects created yet...
+  </div>
+
+  <app-card
+    *ngFor="let project of swaggerProjects$ | async"
+    (click)="onSwaggerProjectSelect(project.id)"
+  >
+    <div class="title">
+      {{ project.projectName }}
+    </div>
+    <div class="content">
+      <ng-container *ngIf="!project.useVcs">
+        <svg class="content__compound-icon content__compound-icon--1">
+          <use href="assets/icons/sprite.svg#icon-not_interested"></use>
+        </svg>
+        <svg class="content__compound-icon content__compound-icon--2">
+          <use href="assets/icons/sprite.svg#icon-flow-branch"></use>
+        </svg>
+      </ng-container>
+
+      <ng-container *ngIf="project.useVcs">
+        <svg class="content__vcs-icon">
+          <use href="assets/icons/sprite.svg#icon-flow-branch"></use>
+        </svg>
+      </ng-container>
+    </div>
+  </app-card>
+</div>
+
+<div
+  class="pagination-container"
+  *ngIf="(overallEntitiesCount$ | async) > 5"
+>
+  <app-pagination
+    [numberOfPages$]="numberOfPages$"
+    [selectedPageNumber$]="selectedPageNumber$"
+    (pageSelected)="onPageChange($event)"
+  >
+  </app-pagination>
+
+  <app-pagination-page-size
+    [pageSizesArray]="[5, 10, 25, 50]"
+    [selectedPageSize$]="selectedPageSize$"
+    (pageSizeSelected)="onPageSizeChange($event)"
+  >
+  </app-pagination-page-size>
+</div>
+
+

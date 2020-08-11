@@ -1,0 +1,43 @@
+<form
+  class="form"
+  [formGroup]="loginForm"
+  (ngSubmit)="onSubmit()"
+>
+  <h1 class="form__title">Swagger Whats New</h1>
+
+  <app-input-field-group
+    class="form__group"
+    [control]="loginForm.get('email')"
+    [showValidationErrors]="false"
+    inputId="email"
+    inputPlaceholder="you@example.com"
+    inputType="text"
+    labelSize="large"
+  >
+    Email
+  </app-input-field-group>
+
+  <app-input-field-group
+    class="form__group"
+    [control]="loginForm.get('password')"
+    [showValidationErrors]="false"
+    inputId="password"
+    inputPlaceholder="••••••••"
+    inputType="password"
+    labelSize="large"
+  >
+    Password
+  </app-input-field-group>
+
+  <app-rounded-corners-button
+    class="form__btn"
+    btnType="submit"
+  >
+    Login
+  </app-rounded-corners-button>
+
+  <a routerLink="/forgot-password">Forgot password?</a>
+  <a routerLink="/register">Register</a>
+</form>
+
+

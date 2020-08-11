@@ -1,0 +1,40 @@
+@import "src/variables.scss";
+
+.button-standard {
+  width: 100%;
+  border: none;
+  border-radius: 2px;
+  padding: 1.2rem 2.4rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+
+  &:active {
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &__primary {
+    color: $color-white;
+    background-color: $color-primary;
+
+    &:hover {
+      background-color: $color-primary-darkest;
+    }
+  }
+
+  &__secondary {
+    color: $color-white;
+    background-color: $color-grey-dark-2;
+
+    &:hover {
+      background-color: $color-grey-dark;
+    }
+  }
+}
+
+

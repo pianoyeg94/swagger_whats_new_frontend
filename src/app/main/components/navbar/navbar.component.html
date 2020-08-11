@@ -1,0 +1,28 @@
+<nav class="navbar__logo">
+  Swagger Whats New
+</nav>
+<app-search-bar
+  class="navbar__search"
+  placeholderText="Search projects"
+>
+</app-search-bar>
+<nav class="navbar__user">
+  <a
+    class="navbar__el navbar__el--logout"
+    (click)="onLogout()"
+  >
+    Log out
+  </a>
+  <a
+    class="navbar__el navbar__el--user"
+    [routerLink]="userProfilePageLink"
+  >
+    <img
+      [src]="userProfilePhotoUrl$ | async"
+      alt="User Photo"
+      class="navbar__user-photo"
+    >
+    <span>{{ userName$ | async }}</span>
+  </a>
+</nav>
+

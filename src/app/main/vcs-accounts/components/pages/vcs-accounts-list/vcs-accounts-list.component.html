@@ -1,0 +1,33 @@
+<app-feature-card
+  svgId="icon-flow-branch"
+  *ngIf="hasRegisterVCSAccountsPermission$ | async"
+  (click)="onRegisterVCSAccount()"
+>
+  <span>New</span>
+  <span>Account</span>
+</app-feature-card>
+
+<div
+  class="no-content"
+  *ngIf="!(hasRegisterVCSAccountsPermission$ | async)
+    && (vcsAccounts$ | async).length === 0"
+>
+  No VCS accounts registered yet...
+</div>
+
+<app-card
+  *ngFor="let account of vcsAccounts$ | async"
+  (click)="onVCSAccountSelect(account.id)"
+>
+  <div class="title">
+    {{ account.accountName }}
+  </div>
+  <div class="content">
+    <svg class="content__vcs-icon" *ngIf="account.service === 'GH'">
+      <use href="assets/icons/sprite.svg#icon-github"></use>
+    </svg>
+    <svg class="content__vcs-icon" *ngIf="account.service === 'BB'">
+      <use href="assets/icons/sprite.svg#icon-bitbucket"></use>
+    </svg>
+  </div>
+</app-card>

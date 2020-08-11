@@ -1,0 +1,82 @@
+<form
+  class="form"
+  [formGroup]="registrationForm"
+  (ngSubmit)="onSubmit()"
+>
+  <h3 class="form__title">Create a New Company and User Account</h3>
+
+  <app-input-field-group
+    [control]="registrationForm.get('companyName')"
+    inputId="company-name"
+    class="form__group--1"
+  >
+    Company Name *
+  </app-input-field-group>
+
+  <app-input-field-group
+    [control]="registrationForm.get('firstName')"
+    inputId="first-name"
+    class="form__group--2"
+  >
+    First Name *
+  </app-input-field-group>
+
+  <app-input-field-group
+    [control]="registrationForm.get('lastName')"
+    inputId="last-name"
+    class="form__group--3"
+  >
+    Last Name *
+  </app-input-field-group>
+
+  <app-input-field-group
+    [control]="registrationForm.get('email')"
+    inputId="email"
+    inputType="email"
+    class="form__group--4"
+  >
+    Email *
+  </app-input-field-group>
+
+  <app-input-field-group
+    [control]="registrationForm.get('jobTitle')"
+    inputId="job-title"
+    class="form__group--5"
+  >
+    Job Title *
+  </app-input-field-group>
+
+  <app-input-field-group
+    [control]="registrationForm.get('password')"
+    inputId="password"
+    inputType="password"
+    class="form__group--6"
+  >
+    Password *
+  </app-input-field-group>
+
+  <app-input-field-group
+    [group]="registrationForm"
+    [control]="registrationForm.get('passwordConfirmation')"
+    inputId="password-confirm"
+    inputType="password"
+    class="form__group--7"
+  >
+    Confirm Password *
+  </app-input-field-group>
+
+  <app-rounded-corners-button
+    class="form__btn"
+    btnType="submit"
+    [disabledIf]="!registrationForm.valid"
+  >
+    Register
+  </app-rounded-corners-button>
+
+  <div class="form__hint">
+    <p>Already have an account?
+      <a class="form__hint--link" routerLink="/login">Log in here</a>
+    </p>
+  </div>
+</form>
+

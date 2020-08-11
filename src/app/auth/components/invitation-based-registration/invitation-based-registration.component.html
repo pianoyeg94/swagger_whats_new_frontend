@@ -1,0 +1,67 @@
+<form
+  class="form"
+  [formGroup]="registrationForm"
+  (ngSubmit)="onSubmit()"
+>
+  <h3 class="form__title">Create a New User Account</h3>
+
+  <app-input-field-group
+    [control]="registrationForm.get('firstName')"
+    inputId="first-name"
+    class="form__group--1"
+  >
+    * First Name
+  </app-input-field-group>
+
+  <app-input-field-group
+    [control]="registrationForm.get('lastName')"
+    inputId="last-name"
+    class="form__group--2"
+  >
+    * Last Name
+  </app-input-field-group>
+
+  <app-input-field-group
+    [control]="registrationForm.get('email')"
+    inputId="email"
+    inputType="email"
+    class="form__group--3"
+  >
+    * Email
+  </app-input-field-group>
+
+  <app-input-field-group
+    [control]="registrationForm.get('jobTitle')"
+    inputId="job-title"
+    class="form__group--4"
+  >
+    * Job Title
+  </app-input-field-group>
+
+  <app-input-field-group
+    [control]="registrationForm.get('password')"
+    inputId="password"
+    inputType="password"
+    class="form__group--5"
+  >
+    * Password
+  </app-input-field-group>
+
+  <app-input-field-group
+    [group]="registrationForm"
+    [control]="registrationForm.get('passwordConfirmation')"
+    inputId="password-confirm"
+    inputType="password"
+    class="form__group--7"
+  >
+    * Confirm Password
+  </app-input-field-group>
+
+  <app-rounded-corners-button
+    class="form__btn"
+    btnType="submit"
+    [disabledIf]="!registrationForm.valid"
+  >
+    Register
+  </app-rounded-corners-button>
+</form>

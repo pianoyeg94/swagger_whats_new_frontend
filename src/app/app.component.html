@@ -1,0 +1,4 @@
+<app-loading *ngIf="appNavigationInProgress$ | async"></app-loading>
+<div class="container" [ngClass]="containerClass$ | async">
+  <router-outlet></router-outlet>
+</div>

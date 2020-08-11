@@ -1,0 +1,80 @@
+<div class="form__label-and-error-wrapper">
+  <label
+    class="form__label"
+    *ngIf="withLabel"
+    [for]="inputId"
+    [ngClass]="{
+      'form__label--small': labelSize === 'small',
+      'form__label--normal': labelSize === 'normal',
+      'form__label--large': labelSize === 'large'
+    }"
+  >
+    <ng-content></ng-content>
+  </label>
+  <ng-container *ngIf="showValidationErrors">
+    <ng-container *ngIf="showFormControlErrors()">
+      <p class="form__error" *ngIf="control.errors.required">* Required</p>
+      <p class="form__error" *ngIf="control.errors.minlength">
+        * At least {{ control.errors.minlength.requiredLength }} characters
+      </p>
+      <p class="form__error" *ngIf="control.errors.maxlength">
+        * Character limit exceeded {{ control.errors.maxlength.requiredLength }}
+      </p>
+      <p class="form__error" *ngIf="control.errors.email">* Invalid format</p>
+      <p class="form__error" *ngIf="control.errors.nonUniqueEmail">
+        * Email already taken
+      </p>
+      <p class="form__error" *ngIf="control.errors.nonUniqueCompanyName">
+        * Company name already taken
+      </p>
+      <p class="form__error" *ngIf="control.errors.nonUniqueProjectName">
+        * Project with this name already exists
+      </p>
+      <p
+        class="form__error"
+        *ngIf="control.errors.notAUrl && !control.errors.required"
+      >
+        * Please provide a valid URL
+      </p>
+    </ng-container>
+    <ng-container *ngIf="showFormGroupErrors()">
+      <p
+        class="form__error"
+        *ngIf="group.errors.passwordsDontMatch && !control.errors"
+      >
+        * Passwords do not match
+      </p>
+      <p
+        class="form__error"
+        *ngIf="group.errors.nonUniqueVCSAccount && !control.errors"
+      >
+        * VCS account already registered
+      </p>
+      <p
+        class="form__error"
+        *ngIf="group.errors.nonExistentVcsAccount && !control.errors"
+      >
+        * VCS account does not exist
+      </p>
+      <p class="form__error" *ngIf="group.errors.nonUniqueRepoBranch">
+        * Branch already used in another project
+      </p>
+    </ng-container>
+  </ng-container>
+</div>
+
+<input
+  class="form__input"
+  (focus)="showFocusBorder = true"
+  (blur)="showFocusBorder = false"
+  [formControl]="control"
+  [type]="inputType"
+  [placeholder]="inputPlaceholder"
+  [id]="inputId"
+  [ngClass]="{
+    'form__input--invalid': showFormControlErrors() || showFormGroupErrors(),
+    'form__input--focus': showFocusBorder && (
+      !showFormControlErrors() || !showFormGroupErrors())
+   }"
+>
+

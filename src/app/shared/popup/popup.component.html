@@ -1,0 +1,6 @@
+<div class="popup" [ngClass]="{'popup__open': openClosedFlag}">
+  <div class="popup__body">
+    <a class="popup__close" (click)="onPopupClose()">&times;</a>
+    <ng-content select=".popup__content"></ng-content>
+  </div>
+</div>

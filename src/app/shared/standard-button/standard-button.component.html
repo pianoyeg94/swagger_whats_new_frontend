@@ -1,0 +1,12 @@
+<button
+  class="button-standard"
+  [ngClass]="{
+    'button-standard__primary': buttonClass === 'primary',
+    'button-standard__secondary': buttonClass === 'secondary'
+   }"
+  [type]="btnType"
+  [disabled]="disabledIf"
+  (click)="onClicked()"
+>
+  <ng-content></ng-content>
+</button>

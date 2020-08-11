@@ -1,0 +1,7 @@
+<a
+  (click)="onPageSizeSelected(pageSize)"
+  *ngFor="let pageSize of pageSizesArray"
+  [ngClass]="{'active': pageSize === selectedPageSize}"
+>
+  {{ pageSize }}
+</a>

@@ -1,0 +1,256 @@
+<div class="changes-container">
+  <h3 class="changes__title">{{ swaggerFileChangesContainerTitle }}</h3>
+
+  <ng-container *ngIf="swaggerFileChangeType === 'removals'">
+    <ng-container *ngIf="whereSwaggerFileChangeHappened === 'endpoints'">
+      <ng-container
+        *ngIf="(swaggerFileRemovals$ | async).endpoints.length > 0"
+      >
+        <ng-container
+          *ngFor="let endpoint of (swaggerFileRemovals$ | async).endpoints"
+        >
+          <div
+            *ngFor="let change of endpoint.what; let i = index"
+            class="pseudo-accordion"
+          >
+            {{i + 1}}) {{ change }}
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <div
+        class="no-content"
+        *ngIf="(swaggerFileRemovals$ | async).endpoints.length === 0"
+      >
+        No removed endpoints...
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="whereSwaggerFileChangeHappened === 'methods'">
+      <ng-container
+        *ngIf="(swaggerFileRemovals$ | async).methods.length > 0"
+      >
+        <div
+          *ngFor="let method of (swaggerFileRemovals$ | async).methods; let i = index;"
+          class="pseudo-accordion"
+        >
+          <div class="changes__method-wrapper">
+            <p>{{i + 1}}) {{ method.where }}</p>
+            <p>---></p>
+            <p *ngFor="let change of method.what; let isLast = last;">
+              {{ change }}{{isLast ? '' : ', '}}
+            </p>
+          </div>
+        </div>
+      </ng-container>
+
+      <div
+        class="no-content"
+        *ngIf="(swaggerFileRemovals$ | async).methods.length === 0"
+      >
+        No removed methods...
+      </div>
+
+    </ng-container>
+
+    <ng-container
+      *ngIf="whereSwaggerFileChangeHappened === 'contracts'"
+    >
+      <ng-container
+        *ngIf="(swaggerFileRemovals$ | async).contracts.length > 0"
+      >
+        <ng-container
+          *ngFor="let contract of (swaggerFileRemovals$ | async).contracts"
+        >
+          <div
+            *ngFor="let change of contract.what; let i = index"
+            class="pseudo-accordion"
+          >
+            {{i + 1}}) {{ change }}
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <div
+        class="no-content"
+        *ngIf="(swaggerFileRemovals$ | async).contracts.length === 0"
+      >
+        No removed contracts...
+      </div>
+    </ng-container>
+
+    <ng-container
+      *ngIf="whereSwaggerFileChangeHappened === 'contractProperties'"
+    >
+      <ng-container
+        *ngIf="(swaggerFileRemovals$ | async).contract_properties.length > 0"
+      >
+        <app-accordion
+          *ngFor="let contract of (swaggerFileRemovals$ | async).contract_properties; let i = index;"
+        >
+          <p section="header">
+            {{ i + 1 }}) Contract: {{ contract.where.contract }}
+          </p>
+          <div section="content" class="accordion-content__container">
+            <h4 class="accordion-content__title">Removed Properties</h4>
+            <p *ngFor="let change of contract.what">{{ change }}</p>
+            <div
+              [ngStyle]="{'display': contract.where.endpoints ? 'block' : 'none' }"
+            >
+              <h4 class="accordion-content__title">Contract used in endpoints
+              </h4>
+              <p *ngFor="let endpoint of contract.where.endpoints">
+                {{ endpoint }}
+              </p>
+            </div>
+            <div
+              [ngStyle]="{'display': contract.where.nested_in_other_contracts ? 'block' : 'none' }"
+            >
+              <h4 class="accordion-content__title">
+                Contract nested in other contracts
+              </h4>
+              <p
+                *ngFor="let contract of contract.where.nested_in_other_contracts"
+              >
+                {{ contract }}
+              </p>
+            </div>
+          </div>
+        </app-accordion>
+      </ng-container>
+
+      <div
+        class="no-content"
+        *ngIf="(swaggerFileRemovals$ | async).contract_properties.length === 0"
+      >
+        No removed contract properties...
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="swaggerFileChangeType === 'additions'">
+    <ng-container *ngIf="whereSwaggerFileChangeHappened === 'endpoints'">
+      <ng-container
+        *ngIf="(swaggerFileAdditions$ | async).endpoints.length > 0"
+      >
+        <ng-container
+          *ngFor="let endpoint of (swaggerFileAdditions$ | async).endpoints"
+        >
+          <div
+            *ngFor="let change of endpoint.what; let i = index"
+            class="pseudo-accordion"
+          >
+            {{i + 1}}) {{ change }}
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <div
+        class="no-content"
+        *ngIf="(swaggerFileAdditions$ | async).endpoints.length === 0"
+      >
+        No added endpoints...
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="whereSwaggerFileChangeHappened === 'methods'">
+      <ng-container
+        *ngIf="(swaggerFileAdditions$ | async).methods.length > 0"
+      >
+        <div
+          *ngFor="let method of (swaggerFileAdditions$ | async).methods; let i = index;"
+          class="pseudo-accordion"
+        >
+          <div class="changes__method-wrapper">
+            <p>{{i + 1}}) {{ method.where }}</p>
+            <p>---></p>
+            <p *ngFor="let change of method.what; let isLast = last">
+              {{ change }}{{isLast ? '' : ', '}}
+            </p>
+          </div>
+        </div>
+      </ng-container>
+
+      <div
+        class="no-content"
+        *ngIf="(swaggerFileAdditions$ | async).methods.length === 0"
+      >
+        No added methods...
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="whereSwaggerFileChangeHappened === 'contracts'">
+      <ng-container
+        *ngIf="(swaggerFileAdditions$ | async).contracts.length > 0"
+      >
+        <ng-container
+          *ngFor="let contract of (swaggerFileAdditions$ | async).contracts"
+        >
+          <div
+            *ngFor="let change of contract.what; let i = index"
+            class="pseudo-accordion"
+          >
+            {{i + 1}}) {{ change }}
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <div
+        class="no-content"
+        *ngIf="(swaggerFileAdditions$ | async).contracts.length === 0"
+      >
+        No added contracts...
+      </div>
+    </ng-container>
+
+    <ng-container
+      *ngIf="whereSwaggerFileChangeHappened === 'contractProperties'"
+    >
+      <ng-container
+        *ngIf="(swaggerFileAdditions$ | async).contract_properties.length > 0"
+      >
+        <app-accordion
+          *ngFor="let contract of (swaggerFileAdditions$ | async).contract_properties; let i = index;"
+        >
+          <p section="header">
+            {{ i + 1 }}) Contract: {{ contract.where.contract }}
+          </p>
+          <div section="content" class="accordion-content__container">
+            <h4 class="accordion-content__title">Added Properties</h4>
+            <p *ngFor="let change of contract.what">{{ change }}</p>
+            <div
+              [ngStyle]="{'display': contract.where.endpoints ? 'block' : 'none' }"
+            >
+              <h4 class="accordion-content__title">
+                Contract used in endpoints
+              </h4>
+              <p *ngFor="let endpoint of contract.where.endpoints">
+                {{ endpoint }}
+              </p>
+            </div>
+            <div
+              [ngStyle]="{'display': contract.where.nested_in_other_contracts ? 'block' : 'none' }"
+            >
+              <h4 class="accordion-content__title">
+                Contract nested in other contracts
+              </h4>
+              <p
+                *ngFor="let contract of contract.where.nested_in_other_contracts"
+              >
+                {{ contract }}
+              </p>
+            </div>
+          </div>
+        </app-accordion>
+      </ng-container>
+
+      <div
+        class="no-content"
+        *ngIf="(swaggerFileAdditions$ | async).contract_properties.length === 0"
+      >
+        No added contract properties...
+      </div>
+    </ng-container>
+  </ng-container>
+
+</div>

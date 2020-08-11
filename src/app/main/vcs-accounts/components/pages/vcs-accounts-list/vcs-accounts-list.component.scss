@@ -1,0 +1,50 @@
+@import "src/variables.scss";
+
+:host {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 17rem));
+  grid-row-gap: 2rem;
+  grid-column-gap: 2.5rem;
+  align-items: center;
+  padding: 2rem 3rem;
+}
+
+app-feature-card {
+  height: 22rem;
+  width: 17rem;
+
+  span {
+
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: .5rem;
+    color: $color-primary;
+  }
+}
+
+app-card {
+  height: 22rem;
+  width: 17rem;
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__vcs-icon {
+      width: 40%;
+      height: 40%;
+      fill: $color-primary;
+    }
+  }
+}
+
+.no-content {
+  grid-column: 1 / -1;
+  color: $color-grey-light-3;
+  font-weight: 400;
+  font-size: 2.5rem;
+  padding: 6rem 0;
+  text-align: center;
+}

@@ -1,0 +1,39 @@
+<form
+  [formGroup]="companyMemberInvitationForm"
+  (ngSubmit)="onSubmit()"
+  class="invitation-form"
+>
+  <app-input-field-group
+    [control]="companyMemberInvitationForm.get('email')"
+    inputId="email"
+  >
+    Email
+  </app-input-field-group>
+
+  <div class="ng-select-group">
+    <label
+      for="membership-permissions"
+      class="ng-select-group__label"
+    >
+      Membership Permissions
+    </label>
+    <ng-select
+      class="custom"
+      [items]="companyMembershipPermissions$ | async"
+      [multiple]="true"
+      formControlName="companyMembershipPermissions"
+      dropdownPosition="bottom"
+      [clearable]="false"
+      [clearOnBackspace]="false"
+      [searchable]="false"
+      appendTo="ng-select"
+      [hideSelected]="false"
+      labelForId="membership-permissions"
+    >
+    </ng-select>
+  </div>
+
+  <app-rounded-corners-button [disabledIf]="!companyMemberInvitationForm.valid">
+    Invite
+  </app-rounded-corners-button>
+</form>

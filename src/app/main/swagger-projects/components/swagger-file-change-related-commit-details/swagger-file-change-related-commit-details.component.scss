@@ -1,0 +1,57 @@
+@import "src/variables.scss";
+
+.commits-container {
+  color: $color-grey-dark;
+  font-weight: 400;
+  font-size: 1.8rem;
+  background-color: $color-grey-light-1;
+  padding: 1rem 2rem 2rem 2rem;
+  border: 1px solid $color-grey-light-3;
+  border-radius: 1rem;
+  margin-top: 3rem;
+}
+
+.commits {
+
+  &__title {
+    color: $color-primary;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  &__header {
+    p {
+      display: inline-block;
+
+      &:not(:first-child) {
+        margin-left: 5rem;
+      }
+    }
+  }
+
+  &__url {
+    text-decoration: none;
+    color: $color-grey-dark;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+.accordion-content {
+
+  &__container {
+    padding: 2rem 0;
+  }
+
+  &__title {
+    color: $color-primary;
+    text-transform: uppercase;
+
+    &:not(:first-child) {
+      margin-top: 1rem;
+    }
+  }
+}

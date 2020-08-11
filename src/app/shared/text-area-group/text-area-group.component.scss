@@ -1,0 +1,26 @@
+@import "src/variables.scss";
+
+:host {
+  font-family: inherit;
+}
+
+.textarea-group {
+
+  &__label {
+    display:inline-block;
+  }
+
+  &__textarea {
+    font-family: inherit;
+    color: $color-grey-dark;
+    padding: 1.5rem 2rem;
+    border: none;
+    background-color: $color-grey-light-2;
+    width: 100%;
+    resize:vertical;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

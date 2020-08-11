@@ -1,0 +1,33 @@
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+$color-primary-darkest: #299e6f;
+$color-primary-gradient: linear-gradient(
+    to right bottom,
+    rgba($color-primary-light, 0.9),
+    rgba($color-primary-dark, 0.9)
+);
+
+$color-secondary-light: #ffb900;
+$color-secondary-dark: #ff7730;
+
+$color-grey-light-1: #f7f7f7;
+$color-grey-light-2: #eee;
+$color-grey-light-3: #d5d5d5;
+
+$color-grey-dark: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+
+$color-white: #fff;
+$color-black: #000;
+
+@mixin color-primary-gradient-text {
+  background-image: linear-gradient(
+      to right,
+      $color-primary-light,
+      $color-primary-dark
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+}

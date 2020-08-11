@@ -1,0 +1,31 @@
+<div class="swagger-file-changes__title">
+  Swagger File Changes
+</div>
+<div
+  class="swagger-file-changes__no-content"
+  *ngIf="(swaggerFileChanges$| async).length === 0"
+>
+  No swagger file changes registered yet...
+</div>
+<table
+  class="swagger-file-changes__table"
+  *ngIf="(swaggerFileChanges$| async).length > 0"
+>
+  <tr>
+    <th>Registered At</th>
+    <th>Comments</th>
+    <th>Details</th>
+  </tr>
+  <tr *ngFor="let change of swaggerFileChanges$| async">
+    <td>{{ change.changesAddedAt }}</td>
+    <td>{{ change.comments.length }}</td>
+    <td>
+      <button
+        (click)="onDetailsBtnClicked(change)"
+        class="button-link"
+      >
+        details
+      </button>
+    </td>
+  </tr>
+</table>

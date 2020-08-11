@@ -1,0 +1,21 @@
+<form
+  [formGroup]="companyDetailsForm"
+  class="company__form"
+  (ngSubmit)="onSubmit()"
+>
+  <h3 class="company__title">Company Details</h3>
+  <app-input-field-group
+    inputId="company-name"
+    [control]="companyDetailsForm.get('companyName')"
+  >
+    Company Name
+  </app-input-field-group>
+
+  <app-rounded-corners-button
+    class="company__button"
+    [disabledIf]="!companyDetailsForm.valid"
+    btnType="submit"
+  >
+    Save Company Details
+  </app-rounded-corners-button>
+</form>

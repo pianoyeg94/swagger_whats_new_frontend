@@ -1,0 +1,17 @@
+@import "src/variables.scss";
+
+.container {
+  min-height: 100vh;
+
+  &__auth {
+    background-image: $color-primary-gradient;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__main {
+    background-color: $color-grey-light-1;
+  }
+}

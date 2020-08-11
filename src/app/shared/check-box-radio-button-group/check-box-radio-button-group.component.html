@@ -1,0 +1,42 @@
+<input
+  *ngIf="withFormControl && inputType === 'checkbox'"
+  [formControl]="control"
+  type="checkbox"
+  [name]="inputName"
+  [id]="inputId"
+  [checked]="checkedByDefault"
+  (change)="onChange()"
+  class="form__checkbox-input"
+>
+<input
+  *ngIf="!withFormControl && inputType === 'checkbox'"
+  type="checkbox"
+  [name]="inputName"
+  [id]="inputId"
+  [checked]="checkedByDefault"
+  (change)="onChange()"
+  class="form__checkbox-input"
+>
+<input
+  *ngIf="withFormControl && inputType === 'radio'"
+  [formControl]="control"
+  type="radio"
+  [name]="inputName"
+  [id]="inputId"
+  [checked]="checkedByDefault"
+  (change)="onChange()"
+  class="form__checkbox-input"
+>
+<input
+  *ngIf="!withFormControl && inputType === 'radio'"
+  type="radio"
+  [name]="inputName"
+  [id]="inputId"
+  [checked]="checkedByDefault"
+  (change)="onChange()"
+  class="form__checkbox-input"
+>
+<label [for]="inputId" class="form__checkbox-label">
+  <span class="form__checkbox-button"></span>
+  <ng-content></ng-content>
+</label>
